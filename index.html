@@ -631,17 +631,30 @@
         <p>Use your mouse/finger to scratch off the gold foil to read the secret message!</p>
       </div>
 
-      <div class="scratch-container">
-        <div class="letter-underneath" id="letterText">
-          <div class="letter-header">To My Dearest & Craziest Friend,</div>
-          <p id="displayCustomNote">
-            Happy Birthday! 🎉 Honestly, life would be at least 98.7% more boring without your crazy jokes, wild energy, and legendary presence. 
-            Thank you for being the person who is always ready for adventures, laughter, and late-night snacks.
-            May this new age bring you boundless joy, wild success, fat bank accounts, and unforgettable memories!
-          </p>
-          <div class="letter-sign" id="displaySenderName">— Your Bestie for Life ❤️</div>
+      <div class="scratch-stage-wrapper">
+        <!-- Left Side Photo -->
+        <div class="scratch-outside-photo scratch-photo-left">
+          <img src="middlel.jpeg" alt="Scratch Memory Left" class="scratch-side-img" />
         </div>
-        <canvas id="scratchCanvas" width="450" height="280"></canvas>
+
+        <!-- Center Scratch Card Container -->
+        <div class="scratch-container">
+          <div class="letter-underneath" id="letterText">
+            <div class="letter-header">To My Dearest & Craziest Friend,</div>
+            <p id="displayCustomNote">
+              Happy Birthday! 🎉 Honestly, life would be at least 98.7% more boring without your crazy jokes, wild energy, and legendary presence. 
+              Thank you for being the person who is always ready for adventures, laughter, and late-night snacks.
+              May this new age bring you boundless joy, wild success, fat bank accounts, and unforgettable memories!
+            </p>
+            <div class="letter-sign" id="displaySenderName">— Your Bestie for Life ❤️</div>
+          </div>
+          <canvas id="scratchCanvas" width="450" height="280"></canvas>
+        </div>
+
+        <!-- Right Side Photo -->
+        <div class="scratch-outside-photo scratch-photo-right">
+          <img src="middler.jpeg" alt="Scratch Memory Right" class="scratch-side-img" />
+        </div>
       </div>
       <button class="game-btn mini" id="quickRevealLetterBtn">⚡ Quick Scratch-All</button>
     </section>
