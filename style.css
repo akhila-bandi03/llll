@@ -2046,8 +2046,15 @@ body.rave-active {
   border: 2px solid var(--primary);
   box-shadow: 0 0 30px rgba(255, 0, 127, 0.5);
 }
-.gift-card.opened .gift-box-body, .gift-card.opened .gift-lid, .gift-card.opened .gift-title {
-  display: none;
+.gift-card.opened .gift-box-body, 
+.gift-card.opened .gift-lid, 
+.gift-card.opened .gift-title,
+.gift-card.opened .gift-sub-hint {
+  display: none !important;
+}
+.gift-card:not(.opened) .gift-content,
+.gift-content.hidden {
+  display: none !important;
 }
 .gift-content {
   animation: popIn 0.4s ease;
