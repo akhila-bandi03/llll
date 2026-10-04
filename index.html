@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>🎉 THE CRAZIEST BIRTHDAY EVER! 🚀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@400;600;800;900&family=Permanent+Marker&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-neon">
+  <!-- Canvas Overlay for Fireworks & Confetti -->
+  <canvas id="partyCanvas"></canvas>
+  <div id="laserGrid"></div>
+  <div class="disco-ball-container" id="discoBallContainer">
+    <div class="disco-ball"></div>
+    <div class="disco-light"></div>
+  </div>
+
+  <!-- Background Audio with custom song.mpeg -->
+  <audio id="bgSongAudio" src="song.mpeg" preload="auto" loop></audio>
+  
+  <!-- Audio Synth Status & Floating Controls -->
+  <div class="floating-hud">
+    <button class="hud-btn" id="customizerToggleBtn" title="Personalize Name & Messages">⚙️ Customize</button>
+    <button class="hud-btn" id="musicToggleBtn" title="Toggle Party Music">🎵 Music: <span id="musicState">OFF</span></button>
+    <button class="hud-btn rave-btn" id="raveModeBtn" title="Activate Ultra Rave Mode">⚡ RAVE MODE</button>
+    <button class="hud-btn" id="soundFxBtn" title="Mute/Unmute SFX">🔊 SFX: ON</button>
+  </div>
+
+  <!-- THEATRICAL RED VELVET CURTAIN OPENING -->
+  <div id="stageCurtain" class="curtain-stage" onclick="openTheaterCurtain()">
+    <div class="curtain-pelmet">
+      <div class="pelmet-swag"></div>
+      <div class="pelmet-swag"></div>
+      <div class="pelmet-swag"></div>
+      <div class="pelmet-gold-trim"></div>
+    </div>
+    <div class="curtain-panel curtain-left" id="curtainLeft">
+      <div class="curtain-tieback left-tie">🎀</div>
+    </div>
+    <div class="curtain-panel curtain-right" id="curtainRight">
+      <div class="curtain-tieback right-tie">🎀</div>
+    </div>
+    <div class="curtain-center-prompt" id="openCurtainBtn" onclick="openTheaterCurtain(); event.stopPropagation();">
+      <div class="rope-ring">
+        <span class="tassel-icon">💖</span>
+      </div>
+      <button class="open-curtain-btn" type="button" onclick="openTheaterCurtain(); event.stopPropagation();">✨ Open it my dear ✨</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: SECRET BIRTHDAY VAULT LOCKER -->
+  <section id="introScreen" class="screen active">
+    <div class="cyber-card intro-box vault-locker-box">
+      <div class="scanner-line"></div>
+      <div class="alert-badge">🔒 CLASSIFIED BIRTHDAY VAULT 🔒</div>
+      <h1 class="glitch-text" data-text="ENTER PASSCODE">ENTER PASSCODE</h1>
+      <p class="sub-lead">Enter the secret 4-digit master code to unlock your birthday surprises!</p>
+      
+      <!-- Locker PIN Display -->
+      <div class="pin-display-wrapper">
+        <div class="pin-dots" id="pinDots">
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
+        </div>
+        <div class="pin-status-msg" id="pinStatusMsg">ENTER 4-DIGIT PIN</div>
+      </div>
+
+      <!-- Keypad Numbers -->
+      <div class="locker-keypad">
+        <button class="keypad-btn" data-key="1">1</button>
+        <button class="keypad-btn" data-key="2">2</button>
+        <button class="keypad-btn" data-key="3">3</button>
+        <button class="keypad-btn" data-key="4">4</button>
+        <button class="keypad-btn" data-key="5">5</button>
+        <button class="keypad-btn" data-key="6">6</button>
+        <button class="keypad-btn" data-key="7">7</button>
+        <button class="keypad-btn" data-key="8">8</button>
+        <button class="keypad-btn" data-key="9">9</button>
+        <button class="keypad-btn key-action" id="keyClear">❌ CLEAR</button>
+        <button class="keypad-btn" data-key="0">0</button>
+        <button class="keypad-btn key-action" id="keyHint">💡 HINT</button>
+      </div>
+
+      <div class="or-divider">OR JUST COME IN ❤️</div>
+      
+      <button class="big-danger-btn" id="nukeBtn">
+        💖 OPEN MY HEART
+      </button>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: THE CRAZY MAIN CARNIVAL HUB -->
+  <main id="mainCelebration" class="screen hidden">
+    <!-- Floating Heart Balloons Layer -->
+    <div id="heartBalloonsContainer" class="heart-balloons-layer"></div>
+
+    <!-- Hero Banner (Symmetrical 3-Column Layout) -->
+    <header class="party-hero">
+      <div class="floating-emojis">🎈 💖 🎂 🚀 ✨ 💖 🎉 👑</div>
+      
+      <div class="hero-flex-container">
+        <!-- Left Side: Lalli's Left Photo -->
+        <div class="hero-photo-wrapper hero-photo-left">
+          <div class="hero-crown">👑</div>
+          <div class="hero-avatar-ring">
+            <img src="frontl.jpeg" alt="Queen Lalli Left" class="hero-avatar-img" onerror="this.src='p1.jpeg'" />
+          </div>
+          <div class="hero-name-tag">💖 Queen Lalli 💖</div>
+        </div>
+
+        <!-- Center: Birthday Title & Actions -->
+        <div class="hero-content-side">
+          <h1 class="main-title pulse-celebrate">
+            HAPPY BIRTHDAY <br/>
+            <span class="highlight-name" id="displayFriendName">LALLI</span>
+            <span class="celebration-tag">CELEBRATION 🎉</span>
+          </h1>
+          <p class="hero-tagline" id="displayTagline">May your life be filled with endless smiles, pure happiness, supreme joy, and unlimited love! 💖✨</p>
+          
+          <div class="hero-actions">
+            <button class="action-btn blast-btn" id="heroConfettiBtn">💥 BLAST FIREWORKS</button>
+            <button class="action-btn horn-btn" id="airHornBtn">🎺 PARTY HORN</button>
+          </div>
+        </div>
+
+        <!-- Right Side: Lalli's Right Photo -->
+        <div class="hero-photo-wrapper hero-photo-right">
+          <div class="hero-crown">✨</div>
+          <div class="hero-avatar-ring">
+            <img src="frontr.jpeg" alt="Queen Lalli Right" class="hero-avatar-img" onerror="this.src='p2.jpeg'" />
+          </div>
+          <div class="hero-name-tag">🌟 Forever Bestie 🌟</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION: 4 SURPRISE MYSTERY GIFTS -->
+    <section class="game-section gifts-section" id="giftsSection">
+      <div class="section-header">
+        <span class="sec-pill">🎁 Special Deliveries</span>
+        <h2>Tap To Open Your 4 Birthday Surprises!</h2>
+        <p>Pick any gift box to unlock your mystery surprises & secret message!</p>
+      </div>
+
+      <div class="gifts-grid" id="giftsGrid">
+        <!-- Gift 1: Typing Letter -->
+        <div class="gift-card gift-letter-card" data-gift="letter">
+          <div class="gift-lid">🎀</div>
+          <div class="gift-box-body">🎁</div>
+          <div class="gift-title">Vault #1</div>
+          <div class="gift-sub-hint">💌 Secret Letter</div>
+        </div>
+
+        <!-- Gift 2: Video Memories & Golden Moments -->
+        <div class="gift-card gift-video-card" data-gift="videos">
+          <div class="gift-lid">🎀</div>
+          <div class="gift-box-body">🎁</div>
+          <div class="gift-title">Vault #2</div>
+          <div class="gift-sub-hint">🎬 Video Memories</div>
+        </div>
+
+        <!-- Gift 3: Nothing (Late aypoyindhi) -->
+        <div class="gift-card" data-gift="nothing">
+          <div class="gift-lid">🎀</div>
+          <div class="gift-box-body">🎁</div>
+          <div class="gift-title">Vault #3</div>
+          <div class="gift-sub-hint">🤫 Super Surprise</div>
+          <div class="gift-content hidden">
+            <div class="gift-emoji">💨 🕸️ 🦗 📦</div>
+            <h4>NOTHING! 😂</h4>
+            <p>Endukantey late ayindhi ravadaniki! 😜 All gifts stock aipoyayi, better luck next year Lalli! 🏃‍♂️💨</p>
+          </div>
+        </div>
+
+        <!-- Gift 4: 4 Magic Balloons (You Are Special To Me) -->
+        <div class="gift-card gift-balloon-card" data-gift="balloons">
+          <div class="gift-lid">🎀</div>
+          <div class="gift-box-body">🎁</div>
+          <div class="gift-title">Vault #4</div>
+          <div class="gift-sub-hint">🎈 4 Magic Balloons</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPEWRITER SECRET LETTER MODAL / DISPLAY -->
+    <div class="letter-modal-overlay hidden" id="letterModal">
+      <div class="cyber-card typewriter-paper">
+        <div class="paper-pin">📌</div>
+        <button class="close-letter-btn" id="closeLetterBtn">&times;</button>
+        <div class="paper-header">
+          <span class="heart-stamp">💌 SPECIAL BIRTHDAY CONFESSION 💌</span>
+          <h3>Dearest Lalli ❤️</h3>
+        </div>
+        
+        <div class="typewriter-body-scroll">
+          <div class="typewriter-body">
+            <p id="typewriterText"></p><span class="type-cursor" id="typeCursor">|</span>
+          </div>
+        </div>
+
+        <div class="paper-footer">
+          <div class="type-actions">
+            <button class="game-btn mini alt" id="skipTypingBtn">⏩ Show Full Letter</button>
+            <button class="game-btn mini" id="replayTypingBtn">🔄 Replay Typing</button>
+          </div>
+          <div class="signature" id="letterSignature">— Your permanently stuck bestie ❤️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO MEMORIES & GOLDEN MOMENTS MODAL -->
+    <div class="letter-modal-overlay hidden" id="videoModal">
+      <div class="cyber-card video-memory-card">
+        <div class="paper-pin">🎬</div>
+        <button class="close-letter-btn" id="closeVideoBtn">&times;</button>
+        
+        <div class="video-modal-header">
+          <span class="heart-stamp">✨ OUR GOLDEN REELS & MEMORIES ✨</span>
+          <h3>Lalli's Memory Moments 💖</h3>
+          <p class="video-sub">Tap any video clip below to watch our crazy moments together!</p>
+        </div>
+
+        <!-- Video Player -->
+        <div class="memory-player-box" id="memoryPlayerBox">
+          <video id="mainMemoryVideo" src="videos/v1.mp4" controls playsinline class="custom-video-player"></video>
+        </div>
+
+        <!-- Video Navigation & Title -->
+        <div class="video-nav-bar">
+          <button class="game-btn mini alt" id="prevVideoBtn">⏮️ Previous Video</button>
+          <span class="current-video-badge" id="currentVideoTitle">🎬 Memory #1</span>
+          <button class="game-btn mini alt" id="nextVideoBtn">Next Video ⏭️</button>
+        </div>
+
+        <!-- Video Playlist Gallery -->
+        <div class="video-playlist-scroll">
+          <div class="video-playlist-grid" id="videoPlaylistGrid">
+            <button class="video-thumb-btn active" data-src="videos/v1.mp4" data-title="🎬 Memory Clip #1">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #1</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v2.mp4" data-title="🎬 Memory Clip #2">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #2</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v3.mp4" data-title="🎬 Memory Clip #3">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #3</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v4.mp4" data-title="🎬 Memory Clip #4">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #4</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v5.mp4" data-title="🎬 Memory Clip #5">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #5</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v6.mp4" data-title="🎬 Memory Clip #6">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #6</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v7.mp4" data-title="🎬 Memory Clip #7">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #7</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v8.mp4" data-title="🎬 Memory Clip #8">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #8</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v10.mp4" data-title="🎬 Memory Clip #10">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #10</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v11.mp4" data-title="🎬 Memory Clip #11">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #11</span>
+            </button>
+            <button class="video-thumb-btn" data-src="videos/v12.mp4" data-title="🎬 Memory Clip #12">
+              <span class="thumb-icon">▶️</span>
+              <span class="thumb-label">Clip #12</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="video-modal-footer">
+          <p id="currentMemoryQuote">"Manam kalisi chesina stupid things and crazy laughs! ❤️"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 MAGIC BALLOONS MODAL (YOU ARE SPECIAL TO ME) -->
+    <div class="letter-modal-overlay hidden" id="balloonModal">
+      <div class="cyber-card balloon-game-card">
+        <div class="paper-pin">🎈</div>
+        <button class="close-letter-btn" id="closeBalloonBtn">&times;</button>
+        
+        <div class="video-modal-header">
+          <span class="heart-stamp">💖 POP TO REVEAL SECRET MESSAGE 💖</span>
+          <h3>Pop The 4 Magic Balloons! 🎈</h3>
+          <p class="video-sub">Tap each balloon in order to reveal what my heart says!</p>
+        </div>
+
+        <!-- Word Reveal Sentence Display -->
+        <div class="revealed-sentence-box">
+          <span class="word-slot" id="wordSlot1">?</span>
+          <span class="word-slot" id="wordSlot2">?</span>
+          <span class="word-slot" id="wordSlot3">?</span>
+          <span class="word-slot" id="wordSlot4">?</span>
+        </div>
+
+        <!-- 4 Interactive Popping Balloons -->
+        <div class="popping-balloons-stage" id="poppingBalloonsStage">
+          <!-- Balloon 1 -->
+          <div class="pop-balloon-item" data-index="1" data-word="YOU" id="balloon1">
+            <div class="pop-balloon balloon-pink">
+              <span class="balloon-num">🎈 1</span>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
+            <span class="balloon-tap-hint">TAP TO POP</span>
+          </div>
+
+          <!-- Balloon 2 -->
+          <div class="pop-balloon-item" data-index="2" data-word="ARE" id="balloon2">
+            <div class="pop-balloon balloon-cyan">
+              <span class="balloon-num">🎈 2</span>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
+            <span class="balloon-tap-hint">TAP TO POP</span>
+          </div>
+
+          <!-- Balloon 3 -->
+          <div class="pop-balloon-item" data-index="3" data-word="SPECIAL" id="balloon3">
+            <div class="pop-balloon balloon-yellow">
+              <span class="balloon-num">🎈 3</span>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
+            <span class="balloon-tap-hint">TAP TO POP</span>
+          </div>
+
+          <!-- Balloon 4 -->
+          <div class="pop-balloon-item" data-index="4" data-word="TO ME ❤️" id="balloon4">
+            <div class="pop-balloon balloon-purple">
+              <span class="balloon-num">🎈 4</span>
+              <div class="balloon-shine"></div>
+            </div>
+            <div class="balloon-knot"></div>
+            <div class="balloon-string"></div>
+            <span class="balloon-tap-hint">TAP TO POP</span>
+          </div>
+        </div>
+
+        <!-- Full Victory Message Box (Appears when all 4 are popped) -->
+        <div class="balloon-victory-banner hidden" id="balloonVictoryBanner">
+          <div class="victory-hearts">💖 💕 💖 💕 💖</div>
+          <h2>"YOU ARE SPECIAL TO ME ❤️"</h2>
+          <p>Always and forever Lalli, never forget it! 🫶✨</p>
+          <button class="game-btn mini" id="resetBalloonsBtn">🎈 Re-inflate Balloons</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: INTERACTIVE 3D BIRTHDAY CAKE & HAND GESTURE CUTTING -->
+    <section class="game-section cake-section" id="cakeSection">
+      <div class="section-header">
+        <span class="sec-pill">Interactive Hand Gesture Stage</span>
+        <h2>🎂 Make A Wish & Cut Cake With Your Own Hand! 🖐️</h2>
+        <p>Step 1: Blow the candles 💨 | Step 2: Screen paina nee chetitho swipe chesi cake cut cheyyi! 🍰</p>
+      </div>
+
+      <div class="cake-stage">
+        <!-- Interactive Hand Swipe Cutting Overlay -->
+        <div class="cake-swipe-overlay hidden" id="cakeSwipeOverlay">
+          <div class="hand-gesture-guide" id="handGestureGuide">
+            <span class="animated-hand">🖐️</span>
+            <div class="swipe-guide-line"></div>
+            <p class="swipe-hint-text">🖐️ LALLI! SCREEN PAINA HAND THO SWIPE CHESI CAKE CUT CHEYYI!</p>
+          </div>
+          <div class="user-hand-follower" id="userHandFollower">🖐️</div>
+          <canvas id="cakeSliceTrailCanvas"></canvas>
+        </div>
+
+        <div class="cake-container" id="cakeContainer">
+          <!-- Candles will be rendered here dynamically -->
+          <div class="candles-rack" id="candlesRack"></div>
+          
+          <div class="cake-tier-wrapper" id="cakeTiersWrapper">
+            <div class="cake-tier tier-top">
+              <div class="frosting-drips">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="tier-label" id="cakeText">HBD LALLI!</div>
+            </div>
+            <div class="cake-tier tier-middle">
+              <div class="strawberries">🍓 🍓 🍓 🍓 🍓</div>
+            </div>
+            <div class="cake-tier tier-bottom">
+              <div class="cake-pattern"></div>
+            </div>
+          </div>
+
+          <div class="cake-plate"></div>
+        </div>
+
+        <!-- Slice Cut Serving Plate (Appears on Cut) -->
+        <div class="served-slice-box hidden" id="servedSliceBox">
+          <div class="floating-slice">🍰 💖 👑</div>
+          <div class="slice-banner">
+            <h3>🎉 WOOOW! LALLI CUT THE CAKE WITH HER OWN HANDS! 😋</h3>
+            <p>Nee chetitho cut chesina first bite for Queen Lalli! 100% Sweetness, 0% Calories! 🎂✨</p>
+          </div>
+        </div>
+
+        <div class="cake-controls">
+          <button class="game-btn" id="blowAllCandlesBtn">💨 1. BLOW CANDLES</button>
+          <button class="game-btn hand-cut-btn hidden" id="cutCakeBtn">🖐️ 2. CUT CAKE WITH HAND!</button>
+          <button class="game-btn alt" id="relightCandlesBtn">🔄 Bake Fresh Cake</button>
+        </div>
+
+        <div class="wish-reveal-box hidden" id="wishRevealBox">
+          <div class="wish-stars">✨ 🌟 💫 🌟 ✨</div>
+          <h3>🎉 WISH GRANTED BY THE UNIVERSE! 🎉</h3>
+          <p id="randomWishMsg">"Your bank balance will soon look like a phone number, your skin will glow, and your wifi will never lag!"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE ROAST-O-MATIC & FORTUNE SLOT MACHINE -->
+    <section class="game-section slot-section">
+      <div class="section-header">
+        <span class="sec-pill">Casino of Chaos</span>
+        <h2>🎰 The Birthday Roast-O-Matic 3000</h2>
+        <p>Spin the reels for your official, 100% scientific horoscope & roast!</p>
+      </div>
+
+      <div class="slot-machine-wrapper">
+        <div class="slot-cabinet">
+          <div class="slot-top-lights">🔴 🟡 🟢 🔵 🟣 🟢 🟡 🔴</div>
+          <div class="slot-screen">
+            <div class="slot-column" id="slot1"><div class="slot-reel">👑</div></div>
+            <div class="slot-column" id="slot2"><div class="slot-reel">🍕</div></div>
+            <div class="slot-column" id="slot3"><div class="slot-reel">🚀</div></div>
+          </div>
+          <div class="slot-payout-text" id="slotResultText">PULL THE LEVER TO WIN EPIC TRUTHS!</div>
+          
+          <div class="slot-controls">
+            <button class="slot-lever-btn" id="pullLeverBtn">🎰 PULL LEVER / SPIN! 🎰</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECRET SURPRISE SECTION -->
+    <section class="game-section secret-surprise-section" id="secretSurpriseSection">
+      <div class="section-header">
+        <span class="sec-pill">🤫 One More Secret</span>
+        <h2>🎁 One More Secret Surprise...</h2>
+        <p>Open chesthe telustundi... 👀💖</p>
+      </div>
+
+      <div class="secret-gift-stage">
+        <!-- The unopened gift box -->
+        <div class="secret-gift-box" id="secretGiftBox" onclick="openSecretSurprise()">
+          <div class="secret-gift-glow"></div>
+          <div class="secret-gift-inner">
+            <div class="secret-gift-ribbon">🎀</div>
+            <div class="secret-gift-icon">🎁</div>
+            <p class="secret-tap-hint">TAP TO OPEN 🤫</p>
+          </div>
+        </div>
+
+        <!-- The reveal (hidden initially) -->
+        <div class="secret-reveal hidden" id="secretReveal">
+          <!-- Laptop with heart photo -->
+          <div class="laptop-heart-container">
+            <div class="laptop-frame">
+              <div class="laptop-screen">
+                <!-- Heart photo frame -->
+                <div class="heart-photo-frame">
+                  <img src="frontl.jpeg" alt="Akki 💖" class="heart-photo-img" />
+                  <div class="heart-overlay-pulse"></div>
+                </div>
+              </div>
+              <div class="laptop-keyboard">
+                <div class="laptop-trackpad"></div>
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+
+            <!-- Floating hearts around laptop -->
+            <div class="float-hearts-around">
+              <span class="fh fh1">❤️</span>
+              <span class="fh fh2">💖</span>
+              <span class="fh fh3">💕</span>
+              <span class="fh fh4">💗</span>
+              <span class="fh fh5">❤️</span>
+              <span class="fh fh6">💝</span>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="secret-message-box">
+            <div class="secret-msg-stars">✨ 💖 ✨</div>
+            <h2 class="secret-msg-title">Na Heart Nikey Free Ga! 💻❤️</h2>
+            <p class="secret-msg-body">
+              Lalli... this laptop has only one folder —<br>
+              <strong>📁 Akki's Heart → You ❤️</strong><br><br>
+              No password. No lock. No terms & conditions.<br>
+              <em>Nuvvu anytime open cheyyochu! 🫶</em>
+            </p>
+            <div class="secret-msg-footer">— Forever yours, Akki 💖</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 5: POLAROID MEMORY WALL & PHOTO BOOTH -->
+    <section class="game-section memory-section">
+      <div class="section-header">
+        <span class="sec-pill">Photo Booth</span>
+        <h2>📸 The Hall of Fame & Memories</h2>
+        <p>Drag, tilt, click for stickers, or upload your own real photos!</p>
+      </div>
+
+      <div class="memory-uploader">
+        <label for="photoInput" class="upload-btn">📁 Add Friend's Photos / Memes</label>
+        <input type="file" id="photoInput" accept="image/*" multiple style="display:none;" />
+        <span class="upload-tip">(Works instantly offline! Photos stay in your browser)</span>
+      </div>
+
+      <div class="polaroid-gallery" id="polaroidGallery">
+        <div class="polaroid-card tilt-left" tabindex="0">
+          <div class="pin">📌</div>
+          <div class="polaroid-img-box">
+            <img src="p1.jpeg" alt="Lalli Memory 1" loading="lazy" />
+          </div>
+          <p class="caption">"Pure Legend Moments 💖"</p>
+        </div>
+
+        <div class="polaroid-card tilt-right" tabindex="0">
+          <div class="pin">📍</div>
+          <div class="polaroid-img-box">
+            <img src="p2.jpeg" alt="Lalli Memory 2" loading="lazy" />
+          </div>
+          <p class="caption">"Unstoppable Smiles ✨"</p>
+        </div>
+
+        <div class="polaroid-card tilt-slight" tabindex="0">
+          <div class="pin">⭐</div>
+          <div class="polaroid-img-box">
+            <img src="p3.jpeg" alt="Lalli Memory 3" loading="lazy" />
+          </div>
+          <p class="caption">"Living Legend in the Flesh 😎"</p>
+        </div>
+
+        <div class="polaroid-card tilt-left-2" tabindex="0">
+          <div class="pin">💖</div>
+          <div class="polaroid-img-box">
+            <img src="p4.jpeg" alt="Lalli Memory 4" loading="lazy" />
+          </div>
+          <p class="caption">"Permanent Headache 😂"</p>
+        </div>
+
+        <div class="polaroid-card tilt-right" tabindex="0">
+          <div class="pin">✨</div>
+          <div class="polaroid-img-box">
+            <img src="p5.jpeg" alt="Lalli Memory 5" loading="lazy" />
+          </div>
+          <p class="caption">"A Million Laughs 🤣"</p>
+        </div>
+
+        <div class="polaroid-card tilt-left" tabindex="0">
+          <div class="pin">🎀</div>
+          <div class="polaroid-img-box">
+            <img src="p6.jpeg" alt="Lalli Memory 6" loading="lazy" />
+          </div>
+          <p class="caption">"Queen of Aura 👑"</p>
+        </div>
+
+        <div class="polaroid-card tilt-slight" tabindex="0">
+          <div class="pin">💫</div>
+          <div class="polaroid-img-box">
+            <img src="p7.jpeg" alt="Lalli Memory 7" loading="lazy" />
+          </div>
+          <p class="caption">"Forever Bestie ❤️"</p>
+        </div>
+
+        <div class="polaroid-card tilt-right" tabindex="0">
+          <div class="pin">🌸</div>
+          <div class="polaroid-img-box">
+            <img src="p8.jpeg" alt="Lalli Memory 8" loading="lazy" />
+          </div>
+          <p class="caption">"Golden Vibe 🌟"</p>
+        </div>
+
+        <div class="polaroid-card tilt-left-2" tabindex="0">
+          <div class="pin">🎈</div>
+          <div class="polaroid-img-box">
+            <img src="p9.jpeg" alt="Lalli Memory 9" loading="lazy" />
+          </div>
+          <p class="caption">"Crazy & Chaos 🥳"</p>
+        </div>
+
+        <div class="polaroid-card tilt-slight" tabindex="0">
+          <div class="pin">🎂</div>
+          <div class="polaroid-img-box">
+            <img src="p10.jpeg" alt="Lalli Memory 10" loading="lazy" />
+          </div>
+          <p class="caption">"Happy Birthday Lalli! 🎂❤️"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: SCRATCH-OFF SECRET HEARTFELT LETTER -->
+    <section class="game-section letter-section">
+      <div class="section-header">
+        <span class="sec-pill">Classified Secret</span>
+        <h2>💌 The Heartfelt Scratch & Reveal Note</h2>
+        <p>Use your mouse/finger to scratch off the gold foil to read the secret message!</p>
+      </div>
+
+      <div class="scratch-container">
+        <div class="letter-underneath" id="letterText">
+          <div class="letter-header">To My Dearest & Craziest Friend,</div>
+          <p id="displayCustomNote">
+            Happy Birthday! 🎉 Honestly, life would be at least 98.7% more boring without your crazy jokes, wild energy, and legendary presence. 
+            Thank you for being the person who is always ready for adventures, laughter, and late-night snacks.
+            May this new age bring you boundless joy, wild success, fat bank accounts, and unforgettable memories!
+          </p>
+          <div class="letter-sign" id="displaySenderName">— Your Bestie for Life ❤️</div>
+        </div>
+        <canvas id="scratchCanvas" width="450" height="280"></canvas>
+      </div>
+      <button class="game-btn mini" id="quickRevealLetterBtn">⚡ Quick Scratch-All</button>
+    </section>
+
+    <!-- SECTION 7: SURVIVAL CERTIFICATE -->
+    <!-- 7. OFFICIAL CERTIFICATE -->
+    <section class="game-section cert-section">
+      <div class="section-header">
+        <span class="sec-pill">Official Appointment Letter 🎓</span>
+        <h2>📜 Certificate of Placement</h2>
+      </div>
+
+      <div class="certificate-frame" id="certificateNode">
+        <div class="cert-border">
+          <div class="cert-seal">🎖️</div>
+          <div class="cert-badge-top">MY HEART COMPANY — OFFICIAL APPOINTMENT</div>
+          <h2 class="cert-title">CERTIFICATE OF COMPLETION</h2>
+          <p class="cert-subtitle">This officially certifies that</p>
+          <h3 class="cert-name" id="certFriendName">LALLI</h3>
+          <div class="cert-body">
+            <p style="font-weight: 700; font-size: 1.1rem; color: #222; margin-bottom: 8px;">
+              🌟 World's Greatest Friendship Internship Successfully Completed! 🌟
+            </p>
+            <p style="font-size: 1.05rem; color: #b8004f; font-weight: 700; line-height: 1.4;">
+              🎉 You got permission to be placed in job at <span style="text-decoration: underline; color: #d63384;">My Heart Company</span>! ❤️
+            </p>
+            <p style="margin-top: 8px; font-size: 0.85rem; color: #666; font-style: italic;">
+              (Designation: Permanent VIP Owner of My Heart • Package: Unlimited Love, Care & Jokes)
+            </p>
+          </div>
+          <div class="cert-footer">
+            <div class="cert-sign-col">
+              <span class="signature-line" id="certSignature">Akki (CEO of My Heart Co.)</span>
+              <span class="sig-label">Authorized Signature</span>
+            </div>
+            <div class="cert-date-col">
+              <span class="signature-line" id="certDate">Today & Forever</span>
+              <span class="sig-label">Date of Placement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-actions">
+        <button class="action-btn" id="printCertBtn">🖨️ Print / Save Certificate</button>
+        <button class="action-btn share-btn" id="shareUrlBtn">🔗 Copy Personalized Share Link</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="party-footer">
+      <p>Made with pure 💖, chaos & JavaScript for the ultimate birthday celebration!</p>
+      <button class="hud-btn mini" id="relaunchNukeBtn">🚀 Retrigger Mega Explosion</button>
+    </footer>
+  </main>
+
+  <!-- MODAL: PERSONALIZATION / CUSTOMIZER -->
+  <div class="modal-overlay hidden" id="customizerModal">
+    <div class="cyber-card modal-card">
+      <div class="modal-header">
+        <h3>✨ Customize This Website For Your Friend!</h3>
+        <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+      </div>
+      
+      <form id="customizerForm" class="custom-form">
+        <div class="form-group">
+          <label for="inputFriendName">Friend's Name / Nickname:</label>
+          <input type="text" id="inputFriendName" placeholder="e.g. Lalli / Champion" value="Lalli" required />
+        </div>
+
+        <div class="form-group">
+          <label for="inputFriendAge">Friend's Age / Level (Optional):</label>
+          <input type="text" id="inputFriendAge" placeholder="e.g. 21 / Level 25 / Forever 18" value="Level Up" />
+        </div>
+
+        <div class="form-group">
+          <label for="inputSenderName">Your Name (Sender):</label>
+          <input type="text" id="inputSenderName" placeholder="e.g. Your Favorite Person" value="Your Bestie" />
+        </div>
+
+        <div class="form-group">
+          <label for="inputTagline">Custom Hero Shoutout:</label>
+          <input type="text" id="inputTagline" placeholder="e.g. May your day be packed with zero bugs and endless pizza!" value="May your day be filled with zero bugs, endless cake, pure chaos, and unlimited aura! ✨" />
+        </div>
+
+        <div class="form-group">
+          <label for="inputLetter">Heartfelt / Roast Letter Note:</label>
+          <textarea id="inputLetter" rows="4" placeholder="Write your custom heartfelt note or hilarious roast here..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="game-btn">💾 Save & Apply Instantly</button>
+          <button type="button" class="game-btn alt" id="copyShareableUrlBtn">🔗 Copy Shareable URL</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Audio, Confetti & Main Scripts -->
+  <script src="audio.js"></script>
+  <script src="confetti-fireworks.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
