@@ -2232,9 +2232,19 @@ body.rave-active {
 /* ==========================================================
    7. OFFICIAL SURVIVAL CERTIFICATE
    ========================================================== */
-.certificate-frame {
-  max-width: 650px;
+.cert-stage-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 950px;
   margin: 0 auto 24px;
+  width: 100%;
+}
+.certificate-frame {
+  flex: 1;
+  max-width: 620px;
+  margin: 0;
   background: #fff;
   color: #1a1a1a;
   padding: 16px;
@@ -2248,31 +2258,27 @@ body.rave-active {
   position: relative;
   background: radial-gradient(circle, #fffdf8 0%, #f7f1e3 100%);
 }
-.cert-photo-side {
-  position: absolute;
-  top: 30px;
-  width: 90px;
-  height: 120px;
-  border-radius: 12px;
-  border: 3px solid #d4af37;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+.cert-outside-photo {
+  width: 130px;
+  height: 175px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  border: 4px solid var(--primary-glow);
+  box-shadow: 0 10px 30px rgba(255, 0, 127, 0.4);
   overflow: hidden;
-  background: #fff;
-  z-index: 2;
+  background: #0f0519;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.cert-photo-side:hover {
-  transform: scale(1.15) rotate(0deg) !important;
+.cert-outside-photo:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+  box-shadow: 0 15px 40px rgba(255, 0, 127, 0.8);
   z-index: 10;
-  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
 }
 .cert-photo-left {
-  left: 18px;
-  transform: rotate(-6deg);
+  transform: rotate(-4deg);
 }
 .cert-photo-right {
-  right: 18px;
-  transform: rotate(6deg);
+  transform: rotate(4deg);
 }
 .cert-side-img {
   width: 100%;
@@ -2608,6 +2614,15 @@ body.rave-active {
   }
 
   /* Certificate Frame Mobile */
+  .cert-stage-wrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cert-outside-photo {
+    width: 110px;
+    height: 150px;
+    transform: none !important;
+  }
   .certificate-frame {
     padding: 8px;
     width: 100%;
