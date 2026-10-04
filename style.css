@@ -2191,6 +2191,7 @@ body.rave-active {
   flex-direction: column;
   justify-content: space-between;
   border-radius: var(--radius-md);
+  overflow-y: auto;
 }
 .letter-header {
   font-family: var(--font-display);
@@ -2199,9 +2200,11 @@ body.rave-active {
 }
 .letter-underneath p {
   font-size: 0.95rem;
-  line-height: 1.55;
+  line-height: 1.6;
   color: #2d3436;
   font-family: var(--font-body);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .letter-sign {
   font-family: var(--font-hand);

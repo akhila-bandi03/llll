@@ -61,39 +61,82 @@ document.addEventListener('DOMContentLoaded', () => {
     friendAge: 'Level Up!',
     senderName: 'Akki',
     tagline: 'May your life be filled with endless smiles, pure happiness, supreme joy, and unlimited love! 💖✨',
-    customNote: `Hey Lalli ❤️,
+    customNote: `💌 Hey Lalli,
 
-First of all… HAPPY BIRTHDAYYY! 🎂🥳
+First of all… HAPPY BIRTHDAYYY, OYY! 🎂😭❤️
 
-Honestly, ninnu best friend ani pilavadam kante, naa life lo oka permanent headache 😂 ani cheppadam correct emo.
+Nuvvu ee letter chadive mundu oka warning — over emotional avvakudadhu. Already nenu raayadaniki konchem over ayya. 😂
 
-Manam kalisi chesina stupid things, random conversations, unnecessary fights, endless laughing, okariki okaram icchukunna torture… ivanni ippudu think chesthe, avi anni naa favourite memories aipoyayi. ❤️
+Actually cheppali ante, nuvvu naa life lo ela enter ayyavo exact ga teliyadu… kani ippudu nuvvu lekunda imagine cheyyadam konchem weird ga undi.
 
-Sometimes manam hours matladukuntam, sometimes em matladakunda kuda days aipothayi… but still, mana friendship lo aa comfort matram change avvadu.
+Mana friendship lo pedda pedda cinematic moments em levu maybe…
 
-Nuvvu na life lo undadam actually chaala special.  
-Naa happy moments lo navvadaniki, bad moments lo listen cheyadaniki, and sometimes reason lekunda irritate cheyadaniki 😂 — thanks for everything.
+But—
 
-I don't know future lo mana lives ela change avuthayo, ekkada untamo, entha busy aipothamo…
+random conversations, stupid jokes, unnecessary fights, “em chesthunav?” messages, reason lekunda navvadam, okariki okaram torture cheyyadam, and mana brain ki matrame artham ayye aa stupid jokes… 😂
 
-But one thing I really hope is —
-mana friendship matram alane undali. ❤️
+Ivi anni kalisi chusthe… avi small moments kaavu. Avi mana memories. ❤️
 
-✨ More random plans.  
-✨ More stupid fights.  
-✨ More inside jokes.  
-✨ More unforgettable memories.  
-✨ And obviously… more reasons to irritate each other. 😂
+Sometimes manam serious ga life gurinchi matladtham…
+5 minutes later: “Rey, aa video chusava?” 😂
+That's literally us. And honestly… I wouldn't change that.
 
-I genuinely hope this new year of your life gives you everything you deserve — happiness, success, peace, and all those little things that make you smile.
+Nuvvu perfect friend ani cheppanu.
+Because obviously…
+• Nee overthinking ki separate server kavali. 💀
+• Nee drama ki Netflix subscription kavali.
+• Nee replies ki 404 error vastundi.
+• And nee craziness ki treatment inka kanipettaledu. 😂
 
-And hey… Never forget that you've got me. ❤️
+But somehow… that's exactly why you're you.
+And that's exactly why I like having you around. ❤️
 
-So once again…
-🎉 HAPPY BIRTHDAY, LALLI! 🎂❤️
+Inka okati cheppali…
+Nuvvu nannu chala care chesthav kada, adi naaku chala chala ishtam. ❤️ Kaani ade care nuvvu vere vallaki chesthe maatram naaku assalu nachadu. 😭😂 Enduko naake teliyadu… konchem possessive emo. Nenu kuda ninnu ala care cheyyakapothe, nuvvu nannu pattinchukovu emo ani konchem bayam anthe. 🥹❤️
 
-Stay crazy. Stay happy. And please… don't become too mature.  
-I still need my crazy best friend. 😂🫶`,
+And sorry. Na valla chala sarlu nuvvu hurt ayi untav. Telisi aina, teliyaka aina, na valla ninnu hurt chesina prathi sari genuinely sorry. ❤️ Ninnu hurt cheyyalani eppudu anukonu.
+
+Life lo future lo em jaruguthundo manaki teliyadu.
+Manam busy avvachu.
+Different places ki vellachu.
+Different people ni kalavachu.
+Mana lives completely change avvachu.
+But somewhere, someday… “Remember when we used to do that stupid thing?” ani okkasari cheppukunte chaalu.
+
+I hope mana friendship lo aa “remember?” moments chaala untayi. ❤️
+• More random plans.
+• More stupid fights.
+• More late conversations.
+• More photos that should NEVER be shown to anyone. 😂
+• More inside jokes.
+• More memories.
+• And obviously… more reasons to annoy each other. 😭❤️
+
+And Lalli…
+Nuvvu eppudaina life lo low feel ayina, confused ayina, everything is going wrong anipinchina… don't forget that someone is always going to be there to listen to your nonsense.
+Yes. Unfortunately, that's me. 😂
+
+So… Today is your birthday.
+I don't just wish you “Happy Birthday.”
+I wish you a year where you laugh more. Cry less. Overthink less. Achieve the things you're secretly wishing for.
+And most importantly… never lose that crazy version of yourself.
+Because that crazy version… is my favourite one. ❤️
+
+So here's to you. To us. To all the memories we've already made. And to all the stupid memories we're still going to create.
+
+Happy Birthday, Lalli. 🎂❤️
+Stay crazy. Stay annoying. Stay happy.
+And please don't become too mature… I still need my crazy best friend. 😂🫶
+
+And one last thing…
+Thanks for being one of those people who made ordinary days feel a little less ordinary. ❤️
+
+12:00 ki ninnu surprise cheddam ani anukunna… kaani nuvvu photos pettale 😭😂 Ippudu nenu em cheyyali cheppu? Antha plan waste ayipoyindi 😂
+
+Sare… inka baga over ayipothundi. Ega bye dear. 😤❤️
+
+Love youuuuu ❤️😘
+Umahhhhhh 😘💋`,
     candlesTotal: 5,
     candlesLit: 5,
     raveActive: false,
