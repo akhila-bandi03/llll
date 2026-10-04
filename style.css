@@ -2241,6 +2241,37 @@ body.rave-active {
   position: relative;
   background: radial-gradient(circle, #fffdf8 0%, #f7f1e3 100%);
 }
+.cert-photo-side {
+  position: absolute;
+  top: 30px;
+  width: 90px;
+  height: 120px;
+  border-radius: 12px;
+  border: 3px solid #d4af37;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  background: #fff;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cert-photo-side:hover {
+  transform: scale(1.15) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+}
+.cert-photo-left {
+  left: 18px;
+  transform: rotate(-6deg);
+}
+.cert-photo-right {
+  right: 18px;
+  transform: rotate(6deg);
+}
+.cert-side-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .cert-seal {
   font-size: 2.8rem;
   margin-bottom: 6px;
