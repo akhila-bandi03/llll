@@ -1244,6 +1244,8 @@ Umahhhhhh 😘💋`,
 
   quickRevealLetterBtn.addEventListener('click', () => {
     sCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+    scratchCanvas.style.pointerEvents = 'none';
+    scratchCanvas.style.display = 'none';
     window.birthdayAudio.playWhistle();
     window.partyCanvas.confettiCannon();
   });
