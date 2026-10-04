@@ -1300,4 +1300,311 @@ Umahhhhhh 😘💋`,
     window.partyCanvas.partyNuke();
     window.birthdayAudio.playVictory();
   });
+
+  // 14. LALLI x AKHILA — FRIENDSHIP TEST GAME CONTROLLER
+  const ftIntroScreen = document.getElementById('ftIntroScreen');
+  const ftPlayScreen = document.getElementById('ftPlayScreen');
+  const ftFinalQScreen = document.getElementById('ftFinalQScreen');
+  const ftScoreScreen = document.getElementById('ftScoreScreen');
+  const ftCertScreen = document.getElementById('ftCertScreen');
+  const ftLockedScreen = document.getElementById('ftLockedScreen');
+
+  const ftStartBtn = document.getElementById('ftStartBtn');
+  const ftLevelBadge = document.getElementById('ftLevelBadge');
+  const ftProgressFill = document.getElementById('ftProgressFill');
+  const ftCurrentScore = document.getElementById('ftCurrentScore');
+  const ftQuestionNum = document.getElementById('ftQuestionNum');
+  const ftQuestionText = document.getElementById('ftQuestionText');
+  const ftOptionsGrid = document.getElementById('ftOptionsGrid');
+  const ftReactionBox = document.getElementById('ftReactionBox');
+  const ftReactionText = document.getElementById('ftReactionText');
+  const ftMeterBox = document.getElementById('ftMeterBox');
+  const ftMeterFill = document.getElementById('ftMeterFill');
+  const ftEmotionalNote = document.getElementById('ftEmotionalNote');
+
+  const ftFinalTypingTitle = document.getElementById('ftFinalTypingTitle');
+  const ftFinalPrompt = document.getElementById('ftFinalPrompt');
+  const ftWordInput = document.getElementById('ftWordInput');
+  const ftWordSubmitBtn = document.getElementById('ftWordSubmitBtn');
+  const ftAnalysingBox = document.getElementById('ftAnalysingBox');
+  const ftAnalysingStatus = document.getElementById('ftAnalysingStatus');
+  const ftAnalysingFill = document.getElementById('ftAnalysingFill');
+  const ftRevealText = document.getElementById('ftRevealText');
+  const ftRevealThought = document.getElementById('ftRevealThought');
+  const ftRevealBig = document.getElementById('ftRevealBig');
+  const ftGoToScoreBtn = document.getElementById('ftGoToScoreBtn');
+
+  const ftFinalScoreVal = document.getElementById('ftFinalScoreVal');
+  const ftClaimCertBtn = document.getElementById('ftClaimCertBtn');
+  const ftLockForeverBtn = document.getElementById('ftLockForeverBtn');
+
+  let ftCurrentIdx = 0;
+  let ftScore = 0;
+
+  const ftQuestions = [
+    {
+      level: "LEVEL 1 — EASY",
+      progress: 14,
+      question: "Nenu ekkuva use chese word enti? 😂",
+      options: [
+        "A. Rey",
+        "B. Enti ra",
+        "C. Sare",
+        "D. All of the above 💀"
+      ],
+      correct: 3,
+      correctReaction: "Okayyy… at least nuvvu observe chesthav 😂❤️",
+      wrongReaction: "Really Lalli? 😭 Intha years friendship waste aa?"
+    },
+    {
+      level: "LEVEL 2 — KNOW ME",
+      progress: 28,
+      question: "Nenu sad ga unte mostly em chestha?",
+      options: [
+        "A. Silent aipotha",
+        "B. Full ga matladtha",
+        "C. Ninnu irritate chestha 😂",
+        "D. Food thinta 😂"
+      ],
+      correct: 2,
+      correctReaction: "Correct! Nannu baaga telusu neeku 😭😂",
+      wrongReaction: "Wrong! Ninnu irritate chestha 😂"
+    },
+    {
+      level: "LEVEL 2 — KNOW ME",
+      progress: 42,
+      question: "Nenu angry ga unna ani ela identify chesthav?",
+      options: [
+        "A. 'Nothing' antanu",
+        "B. Replies short aipothayi",
+        "C. Seen zone",
+        "D. All of the above 💀"
+      ],
+      correct: 3,
+      correctReaction: "EXACTLY 😂 You know me too well.",
+      wrongReaction: "EXACTLY 😂 You know me too well."
+    },
+    {
+      level: "LEVEL 3 — OUR FRIENDSHIP",
+      progress: 57,
+      question: "Mana friendship lo ekkuva jarigindhi enti?",
+      options: [
+        "❤️ Cute moments",
+        "😂 Stupid conversations",
+        "😤 Fights",
+        "🤦‍♀️ Okarini okaram torture cheyyadam",
+        "💀 All of them"
+      ],
+      correct: 4,
+      correctReaction: "Honestly… ALL OF THEM. 😂❤️",
+      wrongReaction: "Honestly… ALL OF THEM. 😂❤️",
+      showMeter: true
+    },
+    {
+      level: "LEVEL 4 — TRICK QUESTIONS",
+      progress: 71,
+      question: "Nenu vere vallatho ekkuva close ga matladithe?",
+      options: [
+        "A. Happy for you 😊",
+        "B. Okay",
+        "C. Konchem jealous 👀",
+        "D. \"Who is that?\" 💀"
+      ],
+      correct: 3,
+      correctReaction: "EXPOSED. 😂 Don't even try to deny it.",
+      wrongReaction: "EXPOSED. 😂 Don't even try to deny it."
+    },
+    {
+      level: "LEVEL 4 — TRICK QUESTIONS",
+      progress: 85,
+      question: "Nuvvu nannu ignore chesthe nenu?",
+      options: [
+        "A. Ignore back",
+        "B. Ask what's wrong",
+        "C. Overthink",
+        "D. Everything above 😭"
+      ],
+      correct: 3,
+      correctReaction: "Unfortunately… yes. 😂😭",
+      wrongReaction: "Unfortunately… yes. 😂😭"
+    },
+    {
+      level: "LEVEL 5 — REAL FRIENDSHIP",
+      progress: 100,
+      question: "Mana friendship lo naaku most important thing enti?",
+      options: [
+        "A. Daily chatting",
+        "B. Photos",
+        "C. Gifts",
+        "D. Being there for each other ❤️"
+      ],
+      correct: 3,
+      correctReaction: "Correct! Being there for each other ❤️",
+      wrongReaction: "Being there for each other ❤️",
+      showEmotionalNote: true
+    }
+  ];
+
+  function showFtScreen(screenToShow) {
+    [ftIntroScreen, ftPlayScreen, ftFinalQScreen, ftScoreScreen, ftCertScreen, ftLockedScreen].forEach(scr => {
+      if (scr) {
+        if (scr === screenToShow) {
+          scr.classList.remove('hidden');
+          scr.classList.add('active');
+        } else {
+          scr.classList.add('hidden');
+          scr.classList.remove('active');
+        }
+      }
+    });
+  }
+
+  if (ftStartBtn) {
+    ftStartBtn.addEventListener('click', () => {
+      ftCurrentIdx = 0;
+      ftScore = 0;
+      if (window.birthdayAudio) window.birthdayAudio.playWhistle();
+      showFtScreen(ftPlayScreen);
+      renderFtQuestion(0);
+    });
+  }
+
+  function renderFtQuestion(idx) {
+    const q = ftQuestions[idx];
+    if (!q) return;
+
+    if (ftLevelBadge) ftLevelBadge.textContent = q.level;
+    if (ftProgressFill) ftProgressFill.style.width = `${q.progress}%`;
+    if (ftQuestionNum) ftQuestionNum.textContent = `Question ${idx + 1} of ${ftQuestions.length}`;
+    if (ftQuestionText) ftQuestionText.textContent = q.question;
+    if (ftCurrentScore) ftCurrentScore.textContent = ftScore;
+
+    if (ftReactionBox) ftReactionBox.classList.add('hidden');
+    if (ftMeterBox) ftMeterBox.classList.add('hidden');
+    if (ftEmotionalNote) ftEmotionalNote.classList.add('hidden');
+
+    if (ftOptionsGrid) {
+      ftOptionsGrid.innerHTML = '';
+      q.options.forEach((optText, optIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'ft-option-btn';
+        btn.textContent = optText;
+        btn.addEventListener('click', () => handleFtAnswer(optIdx, q));
+        ftOptionsGrid.appendChild(btn);
+      });
+    }
+  }
+
+  function handleFtAnswer(selectedIdx, q) {
+    const optionBtns = ftOptionsGrid.querySelectorAll('.ft-option-btn');
+    optionBtns.forEach((btn, idx) => {
+      btn.disabled = true;
+      if (idx === q.correct) {
+        btn.classList.add('correct');
+      } else if (idx === selectedIdx) {
+        btn.classList.add('wrong');
+      }
+    });
+
+    const isRight = (selectedIdx === q.correct);
+    if (isRight) {
+      ftScore++;
+      if (window.birthdayAudio) window.birthdayAudio.playPop();
+    } else {
+      if (window.birthdayAudio) window.birthdayAudio.playWhistle();
+    }
+
+    if (ftCurrentScore) ftCurrentScore.textContent = ftScore;
+
+    if (ftReactionText) {
+      ftReactionText.textContent = isRight ? q.correctReaction : q.wrongReaction;
+    }
+    if (ftReactionBox) ftReactionBox.classList.remove('hidden');
+
+    if (q.showMeter && ftMeterBox) {
+      ftMeterBox.classList.remove('hidden');
+      if (ftMeterFill) {
+        ftMeterFill.style.width = '0%';
+        setTimeout(() => { ftMeterFill.style.width = '87%'; }, 100);
+      }
+    }
+
+    if (q.showEmotionalNote && ftEmotionalNote) {
+      ftEmotionalNote.classList.remove('hidden');
+    }
+
+    setTimeout(() => {
+      if (ftCurrentIdx + 1 < ftQuestions.length) {
+        ftCurrentIdx++;
+        renderFtQuestion(ftCurrentIdx);
+      } else {
+        startFtFinalQuestionScreen();
+      }
+    }, q.showEmotionalNote ? 2800 : 1800);
+  }
+
+  function startFtFinalQuestionScreen() {
+    showFtScreen(ftFinalQScreen);
+    if (ftFinalTypingTitle) ftFinalTypingTitle.textContent = "FINAL QUESTION...";
+    if (ftFinalPrompt) ftFinalPrompt.classList.add('hidden');
+    if (ftAnalysingBox) ftAnalysingBox.classList.add('hidden');
+
+    setTimeout(() => {
+      if (ftFinalPrompt) ftFinalPrompt.classList.remove('hidden');
+    }, 1200);
+  }
+
+  if (ftWordSubmitBtn) {
+    ftWordSubmitBtn.addEventListener('click', () => {
+      const userWord = (ftWordInput ? ftWordInput.value.trim() : '') || 'CRAZY';
+      if (ftFinalPrompt) ftFinalPrompt.classList.add('hidden');
+      if (ftAnalysingBox) ftAnalysingBox.classList.remove('hidden');
+
+      if (ftAnalysingStatus) ftAnalysingStatus.textContent = "ANALYSING ANSWER...";
+      if (ftAnalysingFill) {
+        ftAnalysingFill.style.width = '0%';
+        setTimeout(() => { ftAnalysingFill.style.width = '100%'; }, 100);
+      }
+
+      setTimeout(() => {
+        if (ftRevealText) ftRevealText.classList.remove('hidden');
+        setTimeout(() => {
+          if (ftRevealThought) ftRevealThought.classList.add('hidden');
+          if (ftRevealBig) ftRevealBig.classList.remove('hidden');
+          if (window.birthdayAudio) window.birthdayAudio.playVictory();
+          if (window.partyCanvas) window.partyCanvas.confettiCannon();
+        }, 1200);
+      }, 1500);
+    });
+  }
+
+  if (ftGoToScoreBtn) {
+    ftGoToScoreBtn.addEventListener('click', () => {
+      showFtScreen(ftScoreScreen);
+      if (ftFinalScoreVal) ftFinalScoreVal.textContent = `${Math.max(8, ftScore + 2)}/10`;
+      if (window.birthdayAudio) window.birthdayAudio.playVictory();
+      if (window.partyCanvas) window.partyCanvas.partyNuke();
+    });
+  }
+
+  if (ftClaimCertBtn) {
+    ftClaimCertBtn.addEventListener('click', () => {
+      showFtScreen(ftCertScreen);
+      if (window.birthdayAudio) window.birthdayAudio.playWhistle();
+      if (window.partyCanvas) window.partyCanvas.confettiCannon();
+    });
+  }
+
+  if (ftLockForeverBtn) {
+    ftLockForeverBtn.addEventListener('click', () => {
+      showFtScreen(ftLockedScreen);
+      if (window.birthdayAudio) {
+        window.birthdayAudio.playVictory();
+        window.birthdayAudio.playWhistle();
+      }
+      if (window.partyCanvas) {
+        window.partyCanvas.partyNuke();
+      }
+    });
+  }
 });

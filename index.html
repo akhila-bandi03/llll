@@ -434,28 +434,174 @@
       </div>
     </section>
 
-    <!-- SECTION 2: THE ROAST-O-MATIC & FORTUNE SLOT MACHINE -->
-    <section class="game-section slot-section">
+    <!-- FRIENDSHIP TEST SESSION: LALLI x AKHILA -->
+    <section class="game-section friendship-test-section" id="friendshipTestSection">
       <div class="section-header">
-        <span class="sec-pill">Casino of Chaos</span>
-        <h2>🎰 The Birthday Roast-O-Matic 3000</h2>
-        <p>Spin the reels for your official, 100% scientific horoscope & roast!</p>
+        <span class="sec-pill">🎮 Ultimate Bestie Challenge</span>
+        <h2>🎮 LALLI × AKHILA — FRIENDSHIP TEST ❤️</h2>
       </div>
 
-      <div class="slot-machine-wrapper">
-        <div class="slot-cabinet">
-          <div class="slot-top-lights">🔴 🟡 🟢 🔵 🟣 🟢 🟡 🔴</div>
-          <div class="slot-screen">
-            <div class="slot-column" id="slot1"><div class="slot-reel">👑</div></div>
-            <div class="slot-column" id="slot2"><div class="slot-reel">🍕</div></div>
-            <div class="slot-column" id="slot3"><div class="slot-reel">🚀</div></div>
-          </div>
-          <div class="slot-payout-text" id="slotResultText">PULL THE LEVER TO WIN EPIC TRUTHS!</div>
-          
-          <div class="slot-controls">
-            <button class="slot-lever-btn" id="pullLeverBtn">🎰 PULL LEVER / SPIN! 🎰</button>
+      <div class="friendship-game-wrapper" id="friendshipGameWrapper">
+        
+        <!-- 1. START SCREEN INTRO -->
+        <div class="ft-screen ft-intro-screen active" id="ftIntroScreen">
+          <div class="ft-intro-card">
+            <div class="ft-hearts-bg">💗 ✨ 💕 🌟 💖</div>
+            <div class="ft-badge">CLASSIFIED FRIENDSHIP EXPERIMENT</div>
+            <h1 class="ft-intro-title">💗 HOW WELL DO YOU REALLY KNOW ME?</h1>
+            <p class="ft-intro-warning">"This test may expose how fake your friendship is. 😂"</p>
+            <p class="ft-intro-small">Only one person can survive this.</p>
+            <button class="ft-start-btn" id="ftStartBtn">START THE TEST →</button>
           </div>
         </div>
+
+        <!-- 2. GAME PLAY CONTAINER -->
+        <div class="ft-screen ft-play-screen hidden" id="ftPlayScreen">
+          <!-- Top Progress Bar & Level Indicator -->
+          <div class="ft-progress-bar-container">
+            <div class="ft-level-badge" id="ftLevelBadge">LEVEL 1 — EASY</div>
+            <div class="ft-progress-track">
+              <div class="ft-progress-fill" id="ftProgressFill" style="width: 14%;"></div>
+            </div>
+            <div class="ft-score-mini" id="ftScoreMini">Score: <span id="ftCurrentScore">0</span>/7</div>
+          </div>
+
+          <!-- Question Card Box -->
+          <div class="ft-question-card" id="ftQuestionCard">
+            <div class="ft-question-number" id="ftQuestionNum">Question 1 of 7</div>
+            <h3 class="ft-question-text" id="ftQuestionText">Loading question...</h3>
+
+            <!-- Options Grid -->
+            <div class="ft-options-grid" id="ftOptionsGrid">
+              <!-- Dynamically populated options -->
+            </div>
+
+            <!-- Reaction Feedback Box -->
+            <div class="ft-reaction-box hidden" id="ftReactionBox">
+              <div class="ft-reaction-text" id="ftReactionText"></div>
+            </div>
+
+            <!-- Friendship Meter (Appears on Level 3 Q4) -->
+            <div class="ft-meter-box hidden" id="ftMeterBox">
+              <div class="ft-meter-title">FRIENDSHIP COMPATIBILITY</div>
+              <div class="ft-meter-track">
+                <div class="ft-meter-fill" id="ftMeterFill">87%</div>
+              </div>
+            </div>
+
+            <!-- Emotional Note (Appears on Level 5 Q7) -->
+            <div class="ft-emotional-note hidden" id="ftEmotionalNote">
+              "Because conversations may stop sometimes…<br>but real friendship shouldn't. ❤️"
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. FINAL QUESTION SCREEN (Black Screen Typing) -->
+        <div class="ft-screen ft-final-q-screen hidden" id="ftFinalQScreen">
+          <div class="ft-dark-card">
+            <div class="ft-typing-title" id="ftFinalTypingTitle">FINAL QUESTION...</div>
+            <div class="ft-final-prompt hidden" id="ftFinalPrompt">
+              <h3>If you had to describe our friendship in ONE word…<br>what would it be?</h3>
+              <div class="ft-input-group">
+                <input type="text" id="ftWordInput" placeholder="Type your answer here… 👀" autocomplete="off" />
+                <button class="ft-submit-btn" id="ftWordSubmitBtn">SUBMIT MY ANSWER ❤️</button>
+              </div>
+            </div>
+
+            <!-- Analysing Reveal Layer -->
+            <div class="ft-analysing-box hidden" id="ftAnalysingBox">
+              <div class="ft-analysing-text" id="ftAnalysingStatus">ANALYSING ANSWER...</div>
+              <div class="ft-progress-track gold">
+                <div class="ft-progress-fill gold-fill" id="ftAnalysingFill"></div>
+              </div>
+              <div class="ft-reveal-text hidden" id="ftRevealText">
+                <div class="ft-reveal-thought" id="ftRevealThought">Hmm… interesting. 👀</div>
+                <div class="ft-reveal-big hidden" id="ftRevealBig">
+                  <h2>CRAZY ❤️</h2>
+                  <p>And that's exactly why I love this friendship.</p>
+                  <button class="ft-next-score-btn" id="ftGoToScoreBtn">SEE FINAL SCORE →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. FINAL SCORE SCREEN -->
+        <div class="ft-screen ft-score-screen hidden" id="ftScoreScreen">
+          <div class="ft-score-card">
+            <h2 class="ft-score-title">🏆 FRIENDSHIP TEST COMPLETE</h2>
+            
+            <div class="ft-stats-grid">
+              <div class="ft-stat-item">
+                <span class="ft-stat-label">🎮 Friendship Score:</span>
+                <span class="ft-stat-val" id="ftFinalScoreVal">8/10</span>
+              </div>
+              <div class="ft-stat-item">
+                <span class="ft-stat-label">❤️ Friendship Level:</span>
+                <span class="ft-stat-val">LEGENDARY</span>
+              </div>
+              <div class="ft-stat-item">
+                <span class="ft-stat-label">😂 Craziness:</span>
+                <span class="ft-stat-val">98%</span>
+              </div>
+              <div class="ft-stat-item">
+                <span class="ft-stat-label">🤝 Trust:</span>
+                <span class="ft-stat-val">100%</span>
+              </div>
+              <div class="ft-stat-item">
+                <span class="ft-stat-label">😤 Annoyance:</span>
+                <span class="ft-stat-val">∞%</span>
+              </div>
+            </div>
+
+            <div class="ft-status-badge">
+              <span class="ft-pulse-heart">❤️</span>
+              FRIENDSHIP STATUS: <strong>"PERMANENT ♾️"</strong>
+            </div>
+
+            <p class="ft-score-msg">
+              Congratulations Lalli! 🎉<br>
+              You officially passed the <strong>Akhila Friendship Test™</strong><br>
+              Your certificate cannot be revoked. 😂❤️
+            </p>
+
+            <button class="ft-claim-cert-btn" id="ftClaimCertBtn">🏆 CLAIM YOUR CERTIFICATE</button>
+          </div>
+        </div>
+
+        <!-- 5. BEST FRIEND CERTIFICATE MODAL / DISPLAY -->
+        <div class="ft-screen ft-cert-screen hidden" id="ftCertScreen">
+          <div class="ft-cert-card" id="ftCertCardNode">
+            <div class="ft-cert-inner-border">
+              <div class="ft-cert-header-badge">🏆 OFFICIAL BEST FRIEND CERTIFICATE</div>
+              <p class="ft-cert-sub1">This certificate officially confirms that</p>
+              <h1 class="ft-cert-hero-name">LALLI ❤️</h1>
+              <p class="ft-cert-sub2">has successfully survived</p>
+              <h2 class="ft-cert-target-name">AKHILA</h2>
+              <p class="ft-cert-sub3">and is therefore permanently registered as:</p>
+              <div class="ft-cert-result-badge">BEST FRIEND ♾️</div>
+              <p class="ft-cert-disclaimer">"No refunds. No replacements. No cancellation. 😂"</p>
+              <div class="ft-cert-footer-sign">— Your permanently stuck bestie 🫂❤️</div>
+            </div>
+          </div>
+
+          <button class="ft-lock-forever-btn" id="ftLockForeverBtn">💗 KEEP THIS FRIENDSHIP FOREVER</button>
+        </div>
+
+        <!-- 6. FINAL PERMANENTLY LOCKED CELEBRATION -->
+        <div class="ft-screen ft-locked-screen hidden" id="ftLockedScreen">
+          <div class="ft-locked-card">
+            <div class="ft-big-lock-icon">🔒❤️</div>
+            <h1 class="ft-locked-title">PERMANENTLY LOCKED 🔒❤️</h1>
+            <p class="ft-locked-sub">Best friends forever.</p>
+            <div class="ft-locked-letter">
+              <p>"Okay bye dear… before I become even more emotional 😂"</p>
+              <p class="ft-locked-love">"Love youuu ❤️😘"</p>
+              <p class="ft-locked-kiss">"Umahhhhhh 😘💋"</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
