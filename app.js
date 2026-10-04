@@ -186,14 +186,27 @@ I still need my crazy best friend. 😂🫶`,
     pinStatusMsg.textContent = "VERIFYING PASSCODE...";
     
     setTimeout(() => {
-      // Any 4-digit PIN entered unlocks the birthday magic!
-      pinDots.forEach(dot => dot.classList.add('success'));
-      pinStatusMsg.textContent = "ACCESS GRANTED! WELCOME LEGEND 🎉";
-      pinStatusMsg.style.color = "#00ff88";
+      if (enteredPin === '2024') {
+        pinDots.forEach(dot => dot.classList.add('success'));
+        pinStatusMsg.textContent = "ACCESS GRANTED! WELCOME LEGEND 🎉";
+        pinStatusMsg.style.color = "#00ff88";
 
-      setTimeout(() => {
-        triggerCelebrationAccess();
-      }, 500);
+        setTimeout(() => {
+          triggerCelebrationAccess();
+        }, 500);
+      } else {
+        pinDots.forEach(dot => dot.classList.add('error'));
+        pinStatusMsg.textContent = "WRONG PIN! HINT: Manam kalisina year 😉";
+        pinStatusMsg.style.color = "#ff0055";
+        if (window.birthdayAudio) window.birthdayAudio.playWhistle();
+
+        setTimeout(() => {
+          enteredPin = '';
+          updatePinDisplay();
+          pinStatusMsg.textContent = "ENTER 4-DIGIT PIN";
+          pinStatusMsg.style.color = "var(--secondary-glow)";
+        }, 1300);
+      }
     }, 300);
   }
 
@@ -218,7 +231,7 @@ I still need my crazy best friend. 😂🫶`,
 
   if (keyHint) {
     keyHint.addEventListener('click', () => {
-      pinStatusMsg.textContent = "HINT: ANY 4 DIGITS (e.g. 1 2 3 4 or YOUR BIRTHDAY!)";
+      pinStatusMsg.textContent = "HINT: Manam kalisina year 💖";
       pinStatusMsg.style.color = "#ffe600";
       if (window.birthdayAudio) window.birthdayAudio.playWhistle();
     });
